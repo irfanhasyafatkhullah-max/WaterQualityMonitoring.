@@ -8,7 +8,7 @@ import uuid
 
 from collections import deque
 from datetime import datetime
-
+from zoneinfo import ZoneInfo
 
 # ==========================================
 # 1. KONFIGURASI HALAMAN
@@ -162,7 +162,7 @@ def mqtt_connection():
             payload = json.loads(msg.payload.decode())
 
             data = {
-                "Waktu": datetime.now(),
+                "Waktu": datetime.now(ZoneInfo("Asia/Jakarta")),
                 "pH": payload.get("ph"),
                 "Temperature": payload.get("temperature"),
                 "Turbidity": payload.get("turbidity"),
